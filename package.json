@@ -1,0 +1,81 @@
+{
+	"name": "distzip",
+	"displayName": "distZip",
+	"description": "zip the dist directory in Vue project",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.58.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:distzip.zip"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "dist-zip",
+			"properties": {
+				"distZip.outPath": {
+					"type": "string",
+					"required": [],
+					"description": "zip包输出路径"
+				},
+				"distZip.distPath": {
+					"type": "string",
+					"default": "dist",
+					"description": "dist目录名称"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "distzip.zip",
+				"title": "Zip Dist"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "distzip.zip",
+				"key": "ctrl+shift+z",
+				"mac": "cmd+shift+z",
+				"when": "editorTextFocus"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "editorFocus",
+					"command": "distzip.zip",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"@types/vscode": "^1.58.0",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"eslint": "^7.27.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"jszip": "^3.7.0"
+	}
+}
