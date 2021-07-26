@@ -55,5 +55,7 @@
 	},
 	"dependencies": {
 		"jszip": "^3.7.0"
-	}
+	},
+	"repository": "https://github.com/j20041426/distzip.git",
+	"license": "SEE LICENSE IN LICENSE"
 }
