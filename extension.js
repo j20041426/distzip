@@ -1,24 +1,29 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
-import * as JSZip from 'jszip';
-import * as fs from 'fs';
-import * as os from 'os';
-import {resolve, basename} from 'path';
+const vscode = require('vscode');
+const JSZip = require('jszip');
+const fs = require('fs');
+const os = require('os');
+const { resolve } = require('path');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-	
+
+/**
+ * @param {vscode.ExtensionContext} context
+ */
+function activate(context) {
+
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	// console.log('Congratulations, your extension "distzip" is now active!');
 
 	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
+	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('distzip.zip', () => {
+	let disposable = vscode.commands.registerCommand('distzip.zip', function () {
 		// The code you place here will be executed every time your command is executed
+
 		// Display a message box to the user
 		// vscode.window.showInformationMessage('Hello World from distZip!');
 
@@ -28,12 +33,11 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showErrorMessage('路径错误，请先打开工程项目');
 			return;
 		}
-		const distPath = vscode.workspace.getConfiguration('distZip').get<string>('distPath') || 'dist';
-		const outPath = vscode.workspace.getConfiguration('distZip').get<string>('outPath') || resolve(os.homedir(), 'Desktop');
+		const distPath = vscode.workspace.getConfiguration('distZip').get('distPath') || 'dist';
+		const outPath = vscode.workspace.getConfiguration('distZip').get('outPath') || resolve(os.homedir(), 'Desktop');
 		const packageJson = fs.readFileSync(resolve(rootPath.fsPath, 'package.json'), 'utf8');
 		const packageObj = JSON.parse(packageJson);
 		readDir(zip, resolve(rootPath.fsPath, distPath));
-
 		
 		zip
 			.generateNodeStream({type: 'nodebuffer', streamFiles: true})
@@ -49,12 +53,11 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+function deactivate() {}
 
-
-const readDir = (zip: JSZip, dir: string, folder: string = '') => {
+const readDir = (zip, dir, folder = '') => {
   if (folder) {
-    zip = zip.folder(folder)!;
+    zip = zip.folder(folder);
   }
 
   const files = fs.readdirSync(dir, {withFileTypes: true});
@@ -62,4 +65,9 @@ const readDir = (zip: JSZip, dir: string, folder: string = '') => {
     const path = resolve(dir, file.name);
     file.isDirectory() ? readDir(zip, path, file.name) : zip.file(file.name, fs.readFileSync(path));
   })
+}
+
+module.exports = {
+	activate,
+	deactivate
 }
