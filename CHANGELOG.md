@@ -6,4 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Initial release
+## [0.0.1] - 2021-07-26
+### Added
+- Vue项目快速打包dist目录
+- 参数`distzip.outPath`可以设置zip包输出目录，默认为系统桌面
+- 参数`distzip.distPath`可以设置dist目录名称，默认为dist

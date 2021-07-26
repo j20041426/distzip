@@ -1,7 +1,7 @@
 {
 	"name": "distzip",
 	"displayName": "distZip",
-	"description": "zip the dist directory in Vue project",
+	"description": "Vue项目快速打包dist目录",
 	"publisher": "MrEgg",
 	"version": "0.0.1",
 	"engines": {
