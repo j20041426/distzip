@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 - 快捷键和右键菜单调用
 - 菜单换成中文
+- 更新readme文件
 
 ## [0.0.1] - 2021-07-26
 ### Added
