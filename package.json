@@ -3,7 +3,7 @@
 	"displayName": "distZip",
 	"description": "Vue项目快速打包dist目录",
 	"publisher": "MrEgg",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.58.0"
 	},
@@ -33,9 +33,22 @@
 		"commands": [
 			{
 				"command": "distzip.zip",
-				"title": "Zip Dist"
+				"title": "打包"
 			}
-		]
+		],
+		"keybindings": [{
+			"command": "distzip.zip",
+			"key": "ctrl+shift+z",
+			"mac": "cmd+shift+z"
+		}],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "distzip.zip",
+					"group": "navigation"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
