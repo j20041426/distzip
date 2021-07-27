@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.4] - 2021-07-27
+### Added
+- 新增快捷键Ctrl+Alt+Z
+
 ## [0.0.3] - 2021-07-27
 ### Changed
 - 更新readme文件
