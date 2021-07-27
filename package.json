@@ -3,7 +3,7 @@
 	"displayName": "distZip",
 	"description": "Vue项目快速打包dist目录",
 	"publisher": "MrEgg",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.58.0"
 	},

@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.3] - 2021-07-27
+### Changed
+- 更新readme文件
+
 ## [0.0.2] - 2021-07-27
 ### Added
 - 快捷键和右键菜单调用
