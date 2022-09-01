@@ -26,19 +26,25 @@ function activate(context) {
 
 		// Display a message box to the user
 		// vscode.window.showInformationMessage('Hello World from distZip!');
-
+		console.log(vscode.workspace.workspaceFolders);
 		const zip = new JSZip();
 		const rootPath = vscode.workspace.workspaceFolders?.[0].uri;
 		if (!rootPath) {
 			vscode.window.showErrorMessage('路径错误，请先打开工程项目');
 			return;
 		}
+		
 		const distPath = vscode.workspace.getConfiguration('distZip').get('distPath') || 'dist';
 		const outPath = vscode.workspace.getConfiguration('distZip').get('outPath') || resolve(os.homedir(), 'Desktop');
 		const packageJson = fs.readFileSync(resolve(rootPath.fsPath, 'package.json'), 'utf8');
 		const packageObj = JSON.parse(packageJson);
-		readDir(zip, resolve(rootPath.fsPath, distPath));
-		
+		try {
+			readDir(zip, resolve(rootPath.fsPath, distPath));
+		} catch(e) {
+			vscode.window.showErrorMessage('发生错误：' + e);
+			return;
+		}
+			
 		zip
 			.generateNodeStream({type: 'nodebuffer', streamFiles: true})
 			.pipe(fs.createWriteStream(resolve(outPath, (packageObj.alias || packageObj.name) + '.zip')))
